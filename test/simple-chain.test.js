@@ -25,8 +25,8 @@ describe('Make chain!', () => {
             let res = null;
             try {
                 chainMaker.addLink(1).addLink(2).addLink(3).removeLink(0);
-                chainMaker.addLink(1).addLink(2).addLink(3).removeLink('2nd');
-                chainMaker.addLink(1).addLink(2).addLink(3).removeLink(-2);
+				chainMaker.addLink(1).addLink(2).addLink(3).removeLink('2nd');
+				chainMaker.addLink(1).addLink(2).addLink(3).removeLink(-2);	
                 chainMaker.addLink(1).addLink(2).addLink(3).removeLink(4);
             } catch(err) {
                 if (err._validationProp === 'NA') {
