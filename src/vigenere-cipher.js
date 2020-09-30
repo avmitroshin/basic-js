@@ -11,7 +11,7 @@ class VigenereCipheringMachine {
   encrypt(message_, key_) {
     if (message_ === undefined || key_ === undefined) throw Error("Invalid arguments. One or both are absent.");
 
-    const message = ("" + message_).toUpperCase();
+    const message = this.machineType ? ("" + message_).toUpperCase() : ("" + message_).toUpperCase().split("").reverse().join("");;
     const key = (("" + key_).repeat(Math.ceil(message.length / key_.length)).substr(0, message.length)).toUpperCase();
     
     let encrypted = "";
@@ -24,23 +24,15 @@ class VigenereCipheringMachine {
       }
     }
 
-    if (!this.machineType) {
-      encrypted = encrypted.split("").reverse().join("");
-    }
     return encrypted;
-
   }
 
   decrypt(encrypted_, key_) {
     if (encrypted_ === undefined || key_ === undefined) throw Error("Invalid arguments. One or both are absent.");
 
-    let encrypted = ("" + encrypted_).toUpperCase();
+    const encrypted = this.machineType ? ("" + encrypted_).toUpperCase() : ("" + encrypted_).toUpperCase().split("").reverse().join("");
     const key = (("" + key_).repeat(Math.ceil(encrypted.length / key_.length))).toUpperCase();
     let message = "";
-
-    if (!this.machineType) {
-      encrypted = encrypted.split("").reverse().join("");
-    }
 
     for (let i = 0, j = 0; i < encrypted.length; i++) {
       if (this.ALPHABET.includes(encrypted[i])) {
